@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>Index - jQuery.pwdMeasure.js</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>jQuery.pwdMeasure.js</h1>
+		<h2>Basic</h2>
+
+		<div class="section">
+			<dl>
+				<dt>パスワード</dt>
+				<dd><input type="password" id="pwd1" name="" value="" placeholder="Your password"></dd>
+				<dt>強度</dt>
+				<dd id="pm-indicator1"></dd>
+			</dl>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../src/jquery.pwdMeasure.js"></script>
+	<script type="text/javascript">
+	$("#pwd1").pwdMeasure();
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+body,
+html {
+	background:#efefef;
+	font-size:18px;
+	font-family:sans-serif;
+	color:#333;
+}
+
+img {
+	vertical-align:top;
+}
+
+.container {
+	width:500px;
+	margin:0 auto;
+	padding:60px 0 120px 0;
+}
+
+.controls {
+	margin:30px 0;
+}
+
+.buttons {
+	position:relative;
+}
+
+.btn-bg {
+	display:inline-block;
+	/display:inline;
+	/zoom:1;
+	width:200px;
+	height:60px;
+	text-align:center;
+	line-height:60px;
+	color:#fff;
+	background:url(../images/btn_bg.png) no-repeat 0 0;
+}
+
+.status {
+	margin:30px 0;
+	padding:10px;
+	background:#ccc;
+	border-radius:5px;
+}
+
+.status pre {
+	margin:0;
+}
+
+.status pre code {
+}
+
+@media screen and (max-width:700px) {
+	.container {
+		width:auto;
+		padding:20px;
+	}
+}
+
