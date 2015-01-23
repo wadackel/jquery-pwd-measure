@@ -3,7 +3,7 @@ jQuery.pwdMeasure
 
 
 ## Version
-0.0.0
+1.0.0
 
 
 ## Description
@@ -11,7 +11,7 @@ jQuery.pwdMeasure
 
 
 ## Demo
-[http://example.com/](http://example.com/)
+[http://webdesign-dackel.com/dev/pwd-measure/](http://webdesign-dackel.com/dev/pwd-measure/)
 
 
 ## Features
@@ -71,13 +71,26 @@ $(document).ready(function(){
 **Default:**
 ~~~~javascript
 [
-	[10, "とても弱い"], //0~10%  = "すごく弱い"
-	[30, "弱い"],       //11~30%  = "弱い"
-	[50, "平均"],       //31~50%  = "平均"
-	[70, "強い"],       //31~70%  = "強い"
-	[100, "とても強い"] //71~100%  = "とても強い"
+	{score:10, label:"とても弱い", class:"very-weak"},    //0~10%
+	{score:30, label:"弱い", class:"weak"},               //11~30%
+	{score:50, label:"平均", class:"average"},            //31~50%
+	{score:70, label:"強い", class:"strong"},             //51~70%
+	{score:100, label:"とても強い", class:"very-strong"}, //71~100%
+	{score:"notMatch", label:"不一致", class:"not-match"} //not match
 ]
 ~~~~
+
+キーに対応する役割は下記のとおりです。
+`indicator`オプションを指定した場合、自動的にラベル、クラスが適用されます。  
+また、コールバック内で取得出来ます。
+
+* `score`: 該当する範囲をパーセント(整数)指定 `0~100` or `"notMatch"`
+* `label`: 対応するラベル `string`
+* `class`: 対応するクラス名 `string`
+
+`score`には例外が存在し、`"notMatch"`を指定することで
+メインの入力フィールドと、確認用フィールドの値が違う場合のルールを追加することが出来ます。
+
 
 ### indicator
 強度を示すラベルを表示する要素を指定します。  
@@ -89,22 +102,17 @@ $(document).ready(function(){
 使用できるキーは下記です。
 
 * label
+* class
 * percentage
 
 **Type: `string | jQueryObj | DOM Elements`**  
-**Default: `パスワード強度: <%= label => (<%= percentage %>%)`**
+**Default: `パスワード強度: <%= label %> (<%= percentage %>%)`**
 
 ### confirm
 確認用のフィールドを指定します。確認用フィールドを指定することで、
 パスワードが一致しているかどうかの判定も行ないます。  
 **Type: `string | jQueryObj | DOM Elements`**  
 **Default: `false`**
-
-### notMatch
-メインの入力フィールドと、確認用フィールドの値が一致しない場合のラベルを指定します。  
-このオプションは`confirm`に指定が無い場合は無効です。  
-**Type: `string`**  
-**Default: `不一致`**
 
 
 ## Callbacks
@@ -118,16 +126,22 @@ $(document).ready(function(){
 **Default: `false`**  
 **Type: `function`**
 
-### onChanged
+### onNotMatch
+メインの入力フィールドと、確認用フィールドの値が異なる際にコールされます。  
+毎回のイベント時に呼ばれるのでは無く、内部的なステータス値が変更されたタイミングを採用します。  
+**Default: `false`**  
+**Type: `function`**
+
+### onChangeState
+`onValid`, `onInvalid`, `onNotMatch`のタイミングでコールされます。  
+**Default: `false`**  
+**Type: `function`**
+
+### onChangeValue
 パスワードの値が変更される度にコールされます。  
+※実際の値の変化では無く、`events`オプションで指定したイベント実行の度にコールされます。  
 **Default: `false`**  
 **Type: `function`**
-
-### onOptionEvent
-`events`オプションで指定したイベントが呼び出される度にコールされます。  
-**Default: `false`**  
-**Type: `function`**
-
 
 
 ## Requirements

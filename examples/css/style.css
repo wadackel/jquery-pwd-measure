@@ -1,61 +1,171 @@
 @charset "utf-8";
 
+/* PrimaryColor: #42b983; */
+
+::selection {
+  background:#42b983;
+}
+
+::-moz-selection {
+  background:#42b983;
+}
+
 body,
 html {
-	background:#efefef;
 	font-size:18px;
-	font-family:sans-serif;
-	color:#333;
+  font-family:"ヒラギノ角ゴ Pro W3","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","Hiragino Kaku Gothic ProN",Arial,Helvetica,"メイリオ",Meiryo,sans-serif;
+  color:#7f8c8d;
+  word-wrap:break-word;
+  text-shadow:1px 1px 0 rgba(255,255,255,.8);
+  -webkit-text-size-adjust:100%;
 }
 
-img {
-	vertical-align:top;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color:#2c3e50;
 }
 
-.container {
-	width:500px;
-	margin:0 auto;
-	padding:60px 0 120px 0;
-}
-
-.controls {
-	margin:30px 0;
-}
-
-.buttons {
-	position:relative;
-}
-
-.btn-bg {
-	display:inline-block;
-	/display:inline;
-	/zoom:1;
-	width:200px;
-	height:60px;
+h1 {
+	margin:2em 0;
+	padding:.5em 0;
+	border-top:2px solid #2c3e50;
+	border-bottom:2px solid #2c3e50;
+	font-size:1.5em;
 	text-align:center;
-	line-height:60px;
-	color:#fff;
-	background:url(../images/btn_bg.png) no-repeat 0 0;
 }
 
-.status {
-	margin:30px 0;
-	padding:10px;
-	background:#ccc;
+h2 {
+	margin:1em 0 .5em 0;
+	padding:.4em;
+	background:#e4e4e4;
 	border-radius:5px;
 }
 
-.status pre {
-	margin:0;
+input,
+button {
+	-webkit-appearance:none;
 }
 
-.status pre code {
+input[type="password"] {
+	display:block;
+	width:100%;
+	height:2.5em;
+	padding:.8em;
+	border:1px solid #ccc;
+	background:#fff;
+	border-radius:5px;
+	box-sizing:border-box;
+	-webkit-transition:all .2s ease-in-out;
+	        transition:all .2s ease-in-out;
 }
 
-@media screen and (max-width:700px) {
+input[type="password"]:focus {
+	outline:none;
+	border-color:#2ebc3d;
+	background:#f3f3f3;
+	box-shadow:0 1px 3px rgba(0,0,0,.2) inset;
+}
+
+button {
+	display:inline-block;
+	padding:.7em 3em;
+	background:#ccc;
+	border:0;
+	border-radius:5px;
+	color:#2c3e50;
+	font-weight:bold;
+	font-size:.9em;
+	-webkit-transition:all .2s ease-in-out;
+	        transition:all .2s ease-in-out;
+}
+
+button:hover {
+	background:#42b983;
+	color:#fff;
+}
+
+code {
+	display:inline-block;
+}
+
+.container {
+	max-width:450px;
+	margin:0 auto;
+	padding:0 20px;
+}
+
+.section {
+	margin-bottom:80px;
+}
+
+.form-group {
+	margin:10px 0 20px 0;
+}
+
+.form-group label {
+	display:block;
+	margin:10px 0;
+	font-weight:bold;
+	color:#2c3e50;
+	cursor:pointer;
+}
+
+.form-field {
+}
+
+
+/**
+ * jQuery.pwdMeasure.js, Example styles
+ * 
+ * Use class:
+ * 		- very-weak
+ * 		- weak
+ * 		- average
+ * 		- strong
+ * 		- very-strong
+ */
+.pwd-indicator {
+	margin:10px 0;
+	padding:1em;
+	background:#e4e4e4;
+	border:1px solid #ccc;
+	color:#2c3e50;
+	font-size:.7em;
+	text-align:center;
+	-webkit-transition:all .2s ease-in-out;
+	        transition:all .2s ease-in-out;
+}
+
+.pwd-indicator.very-weak,
+.pwd-indicator.not-match {
+	background-color:#ffc3cf;
+	border-color:#be1d30;
+}
+
+.pwd-indicator.weak {
+	background-color:#ffe6e5;
+	border-color:#ff787d;
+}
+
+.pwd-indicator.average {
+}
+
+.pwd-indicator.strong {
+	background-color:#bceea6;
+	border-color:#78bc42;
+}
+
+.pwd-indicator.very-strong {
+	background-color:#68c6d7;
+	border-color:#4f85a7;
+}
+
+
+@media screen and (max-width:450px) {
 	.container {
-		width:auto;
-		padding:20px;
 	}
 }
-
