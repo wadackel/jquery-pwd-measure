@@ -38,6 +38,7 @@ pwdMeasureの特徴は下記のとおりです。
 
 ~~~~html
 <input type="password" id="pwd" name="pwd" value="" placeholder="Your Password">
+<p id="pm-indicator"></p>
 ~~~~
 
 ### JavaScript
@@ -57,6 +58,7 @@ $(document).ready(function(){
 
 ### minLength
 最低限必要な文字数を指定します。  
+ここで指定した文字数と`minScore`の値から入力されたパスワードの強度を求めます。  
 **Default: `6`**  
 **Type: `integer`**
 

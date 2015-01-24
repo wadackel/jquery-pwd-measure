@@ -1,3 +1,10 @@
+/*!
+ * jQuery.pwdMeasure 
+ * version: 1.0.0
+ * license: MIT
+ * copyright: tsuyoshiwada 2015 All Right Reserved.
+ * build: 2015-01-24 17:44:41 GMT+0900
+ */
 ;(function($, window, undefined){
 	"use strict";
 
