@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<title>Index - jQuery.pwdMeasure.js</title>
+	<title>jQuery.pwdMeasure.js</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -14,13 +14,11 @@
 		<div class="section">
 			<form action="" method="get" id="pm-form1">
 				<h2>Basic</h2>
-				<p>
-					最も基本的な使い方です。単一の入力フィールドに対して、強度判定を行ないます。
-				</p>
+				<p>最も基本的な使い方です。単一の入力フィールドに対して、強度判定を行ないます。</p>
 				<div class="form-group">
-					<label for="pwd1">パスワード</label>
+					<label for="pm-input">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd1" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-input" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div id="pm-indicator" class="pwd-indicator"></div>
@@ -32,15 +30,15 @@
 				<h2>Confirm</h2>
 				<p><code>confirm</code>オプションで確認用のフィールドを指定した例です。確認用のフィールドがある場合は、値が一致しているかのチェックも行ないます。</p>
 				<div class="form-group">
-					<label for="pwd2">パスワード</label>
+					<label for="pm-input2">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd2" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-input2" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd2">パスワード確認</label>
+					<label for="pm-confirm2">パスワード確認</label>
 					<div class="form-field">
-						<input type="password" id="pwd-confirm2" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-confirm2" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div id="pm-indicator2" class="pwd-indicator"></div>
@@ -52,9 +50,9 @@
 				<h2>Change Labels</h2>
 				<p>表示ラベルを変更する例です。</p>
 				<div class="form-group">
-					<label for="pwd3">パスワード</label>
+					<label for="pm-input3">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd3" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-input3" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div id="pm-indicator3" class="pwd-indicator"></div>
@@ -66,9 +64,9 @@
 				<h2>Change Events</h2>
 				<p>強度判定を行うタイミングを決める為のイベントを変更することが出来ます。下記では<code>change</code>のみに絞っています。</p>
 				<div class="form-group">
-					<label for="pwd4">パスワード</label>
+					<label for="pm-input4">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd4" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-input4" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div id="pm-indicator4" class="pwd-indicator"></div>
@@ -82,15 +80,15 @@
 					コールバックを使用して、パスワードが一定の強度より低い場合はフォームの送信を止める例です。<br />
 					下記では強度を示すパーセントが50以下の場合送信をキャンセルします。</p>
 				<div class="form-group">
-					<label for="pwd5">パスワード</label>
+					<label for="pm-input5">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd5" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-input5" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd-confirm5">パスワード</label>
+					<label for="pm-confirm5">パスワード</label>
 					<div class="form-field">
-						<input type="password" id="pwd-confirm5" name="" value="" placeholder="Your password">
+						<input type="password" id="pm-confirm5" name="" value="" placeholder="Your password">
 					</div>
 				</div>
 				<div class="form-group">
@@ -105,22 +103,22 @@
 	</div>
 
 	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="../src/jquery.pwdMeasure.js"></script>
+	<script type="text/javascript" src="js/jquery.pwdMeasure.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		
-		$("#pwd1").pwdMeasure();
+		$("#pm-input").pwdMeasure();
 
-		$("#pwd2").pwdMeasure({
+		$("#pm-input2").pwdMeasure({
 			indicator: "#pm-indicator2",
-			confirm: "#pwd-confirm2"
+			confirm: "#pm-confirm2"
 		});
 
-		$("#pwd3").pwdMeasure({
+		$("#pm-input3").pwdMeasure({
 			indicator: "#pm-indicator3",
 			indicatorTemplate: "<%= label %>",
 			labels: [
-				{score:10, label:"Level 1", class:"very-weak"},
+				{score:20, label:"Level 1", class:"very-weak"},
 				{score:30, label:"Level 2", class:"weak"},
 				{score:50, label:"Level 3", class:"average"},
 				{score:70, label:"Level 4", class:"strong"},
@@ -128,30 +126,28 @@
 			]
 		});
 
-		$("#pwd4").pwdMeasure({
+		$("#pm-input4").pwdMeasure({
 			indicator: "#pm-indicator4",
 			events: "change"
 		});
 
 		(function(){
-			var $form = $("#pm-form5"),
-					$indicator = $("#pm-indicator5");
+			var $form = $("#pm-form5");
 
 			// submitイベントをキャンセル
 			function formCancelSubmit(){
 				$form.off("submit").on("submit", function(e){
-					alert("パスワードの強度が基準値に達していません！");
+					alert("パスワードが一致しないか基準値に達していません！");
 					e.preventDefault();
 				});
 			}
 			formCancelSubmit();
 
 			// コールバックを使用する
-			$("#pwd5").pwdMeasure({
+			$("#pm-input5").pwdMeasure({
 				minScore: 50,
-				confirm: "#pwd-confirm5",
-				indicator: $indicator,
-				indicatorTemplate: "現在の強度: <%= percentage %>%",
+				confirm: "#pm-confirm5",
+				indicator: "#pm-indicator5",
 				onValid: function(percentage, label, className){
 					$form.off("submit");
 				},

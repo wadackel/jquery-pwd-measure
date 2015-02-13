@@ -1,9 +1,9 @@
 jQuery.pwdMeasure
-====
+================
 
 
 ## Version
-1.0.0
+1.0.1
 
 
 ## Description
@@ -27,7 +27,7 @@ pwdMeasureの特徴は下記のとおりです。
 
 ## How To Use
 
-### jQuery、jquery.pwdMeasure.jsを読み込みます
+### Install
 
 ~~~~html
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -73,12 +73,13 @@ $(document).ready(function(){
 **Default:**
 ~~~~javascript
 [
-	{score:10, label:"とても弱い", class:"very-weak"},    //0~10%
-	{score:30, label:"弱い", class:"weak"},               //11~30%
-	{score:50, label:"平均", class:"average"},            //31~50%
-	{score:70, label:"強い", class:"strong"},             //51~70%
-	{score:100, label:"とても強い", class:"very-strong"}, //71~100%
-	{score:"notMatch", label:"不一致", class:"not-match"} //not match
+  {score:10,         label:"とても弱い", class:"very-weak"},   //0~10%
+  {score:30,         label:"弱い",       class:"weak"},        //11~30%
+  {score:50,         label:"平均",       class:"average"},     //31~50%
+  {score:70,         label:"強い",       class:"strong"},      //51~70%
+  {score:100,        label:"とても強い", class:"very-strong"}, //71~100%
+  {score:"notMatch", label:"不一致",     class:"not-match"},   //not match
+  {score:"empty",    label:"未入力",     class:"empty"}        //empty
 ]
 ~~~~
 
@@ -90,8 +91,13 @@ $(document).ready(function(){
 * `label`: 対応するラベル `string`
 * `class`: 対応するクラス名 `string`
 
-`score`には例外が存在し、`"notMatch"`を指定することで
-メインの入力フィールドと、確認用フィールドの値が違う場合のルールを追加することが出来ます。
+`score`には例外が存在します。それぞれのルールは下記のとおりです。
+
+| key           | rule                                                      |
+| :------------ | :-------------------------------------------------------- |
+| `"notMatch"`  | メイン、確認用フィールドの値が違う場合                    |
+| `"empty"`     | メイン、確認用フィールドのどちらも空の場合                |
+
 
 
 ### indicator
@@ -134,6 +140,11 @@ $(document).ready(function(){
 **Default: `false`**  
 **Type: `function`**
 
+### onEmpty
+メインの入力フィールドと、確認用フィールドのどちらも値が空の時コールされます。  
+**Default: `false`**  
+**Type: `function`**
+
 ### onChangeState
 `onValid`, `onInvalid`, `onNotMatch`のタイミングでコールされます。  
 **Default: `false`**  
@@ -151,7 +162,7 @@ jQuery 1.7.2 +
 
 
 ## Licence
-Released under the [MIT Licence](https://github.com/tcnksm/tool/blob/master/LICENCE)
+Released under the [MIT Licence](https://github.com/tsuyoshiwada/jQuery.pwdMeasure/blob/master/LICENCE)
 
 
 ## Author

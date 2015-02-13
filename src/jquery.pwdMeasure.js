@@ -1,14 +1,15 @@
 ;(function($, window, undefined){
 	"use strict";
 
-	var version = "1.0.0",
+	var version = "1.0.1",
 
 	MAX_CHAR = 12,
 
 	Status = {
 		VALID: 1,
 		INVALID: 2,
-		NOT_MATCH: 3
+		NOT_MATCH: 3,
+		EMPTY: 4
 	},
 
 	labelObjDefault = {
@@ -23,13 +24,14 @@
 		minLength: 6,
 		events: "keyup change",
 		labels: [
-			{score:10, label:"とても弱い", class:"very-weak"},    //0~10%
-			{score:30, label:"弱い", class:"weak"},               //11~30%
-			{score:50, label:"平均", class:"average"},            //31~50%
-			{score:70, label:"強い", class:"strong"},             //51~70%
-			{score:100, label:"とても強い", class:"very-strong"}, //71~100%
-			{score:"notMatch", label:"不一致", class:"not-match"} //not match
-		],
+			{score:10,         label:"とても弱い", class:"very-weak"},   //0~10%
+			{score:30,         label:"弱い",       class:"weak"},        //11~30%
+			{score:50,         label:"平均",       class:"average"},     //31~50%
+			{score:70,         label:"強い",       class:"strong"},      //51~70%
+			{score:100,        label:"とても強い", class:"very-strong"}, //71~100%
+			{score:"notMatch", label:"不一致",     class:"not-match"},   //not match
+			{score:"empty",    label:"未入力",     class:"empty"}        //empty
+		], 
 		indicator: "#pm-indicator",
 		indicatorTemplate: "パスワード強度: <%= label %> (<%= percentage %>%)",
 		confirm: false,
@@ -38,6 +40,7 @@
 		onValid: false,
 		onInvalid: false,
 		onNotMatch: false,
+		onEmpty: false,
 		onChangeState: false,
 		onChangeValue: false
 	},
@@ -179,9 +182,12 @@
 				if( percentage > prev.score && percentage <= d.score ){
 					index = i;
 				}
-			}else if( d.score === "notMatch" && status === Status.NOT_MATCH ){
+			}else if(
+				d.score === "empty" && status === Status.EMPTY || 
+				d.score === "notMatch" && status === Status.NOT_MATCH
+			){
 				index = i;
-				return false; //break
+				return false;
 			}
 		});
 
@@ -204,21 +210,24 @@
 	 * @return void
 	 */
 	PwdMeasure.prototype.update = function(){
-		var status = this.status;
+		var status = this.status,
+				val1 = this.$elem.val(),
+				val2 = this.$confirm.val(),
+				confirmSize = this.$confirm.size();
 
 		// Upadte strength percentage
 		this.calc();
 
 		// Base + Confirm
-		if( this.$confirm.size() > 0 ){
-			var val1 = this.$elem.val(),
-					val2 = this.$confirm.val();
+		if( confirmSize > 0 ){
 			if( val2 !== "" ){
 				if( val1 === val2 ){
 					status = this.percentage >= this.options.minScore ? Status.VALID : Status.INVALID;
 				}else{
 					status = Status.NOT_MATCH;
 				}
+			}else if( val1 === "" ){
+				status = Status.EMPTY;
 			}else{
 				status = Status.INVALID;
 			}
@@ -227,6 +236,8 @@
 		}else{
 			if( this.percentage >= this.options.minScore ){
 				status = Status.VALID;
+			}else if( val1 === "" ){
+				status = Status.EMPTY;
 			}else{
 				status = Status.INVALID;
 			}
@@ -254,6 +265,10 @@
 				case Status.INVALID:
 					type = "invalid";
 					this._callbackApply(this.options.onInvalid, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+					break;
+				case Status.EMPTY:
+					type = "empty";
+					this._callbackApply(this.options.onEmpty, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
 					break;
 				case Status.NOT_MATCH:
 					type = "notMatch";
