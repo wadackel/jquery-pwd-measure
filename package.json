@@ -1,6 +1,6 @@
 {
   "name": "jQuery.pwdMeasure",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "jQuery plugin to measure the strength of the password.",
   "repository": {
     "type": "git",

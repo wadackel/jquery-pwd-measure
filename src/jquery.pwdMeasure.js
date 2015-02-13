@@ -1,7 +1,7 @@
 ;(function($, window, undefined){
 	"use strict";
 
-	var version = "1.0.1",
+	var version = "1.0.2",
 
 	MAX_CHAR = 12,
 

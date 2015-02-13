@@ -1,13 +1,13 @@
 /*!
  * jQuery.pwdMeasure
  * jQuery plugin to measure the strength of the password.
- * @version 1.0.1
+ * @version 1.0.2
  * @author tsuyoshiwada
  * @license MIT
  */;(function($, window, undefined){
 	"use strict";
 
-	var version = "1.0.1",
+	var version = "1.0.2",
 
 	MAX_CHAR = 12,
 
