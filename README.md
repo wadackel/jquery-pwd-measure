@@ -27,27 +27,33 @@ pwdMeasureの特徴は下記のとおりです。
 
 ## How To Use
 
+### Bower
+
+```
+$ bower install jquery-pwd-measure
+```
+
 ### Install
 
-~~~~html
+```html
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.pwdMeasure.min.js"></script>
-~~~~
+```
 
 ### HTML
 
-~~~~html
+```html
 <input type="password" id="pwd" name="pwd" value="" placeholder="Your Password">
 <p id="pm-indicator"></p>
-~~~~
+```
 
 ### JavaScript
 
-~~~~javascript
+```javascript
 $(document).ready(function(){
 	$("#pwd").pwdMeasure();
 });
-~~~~
+```
 
 
 ## Options
@@ -71,7 +77,8 @@ $(document).ready(function(){
 強度を示すラベルを配列で指定します。  
 **Type: `array`**  
 **Default:**
-~~~~javascript
+
+```javascript
 [
   {score:10,         label:"とても弱い", class:"very-weak"},   //0~10%
   {score:30,         label:"弱い",       class:"weak"},        //11~30%
@@ -81,7 +88,7 @@ $(document).ready(function(){
   {score:"notMatch", label:"不一致",     class:"not-match"},   //not match
   {score:"empty",    label:"未入力",     class:"empty"}        //empty
 ]
-~~~~
+```
 
 キーに対応する役割は下記のとおりです。
 `indicator`オプションを指定した場合、自動的にラベル、クラスが適用されます。  
