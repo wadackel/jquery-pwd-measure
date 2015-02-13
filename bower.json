@@ -1,0 +1,27 @@
+{
+  "name": "jQuery.pwdMeasure",
+  "version": "1.0.1",
+  "homepage": "https://github.com/tsuyoshiwada/jQuery.pwdMeasure",
+  "authors": [
+    "tsuyoshiwada <v23.b.wada@gmail.com>"
+  ],
+  "description": "jQuery plugin to measure the strength of the password.",
+  "main": "jquery.pwdMeasure.js",
+  "keywords": [
+    "jQuery",
+    "password"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    ".DS_Store",
+    ".sass-cache",
+    ".gitignore",
+    "src",
+    "gulpfile.coffee",
+    "package.json",
+    "examples",
+    "node_modules",
+    "bower_components"
+  ]
+}

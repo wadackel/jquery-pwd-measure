@@ -21,14 +21,9 @@ pkg.jshintConfig.lookup = false
 
 path = {
   src: "./src"
-  dist: "./dist"
+  dist: "./"
   examples: "./examples"
 }
-
-
-# clean
-gulp.task "clean", (cb)->
-  rm path.dist, cb
 
 
 # jshint
@@ -76,6 +71,6 @@ gulp.task "default", ->
 
 
 # build
-gulp.task "build", ["clean", "jshint"], ->
+gulp.task "build", ["jshint"], ->
   gulp.run "compile"
 
