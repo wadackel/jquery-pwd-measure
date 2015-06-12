@@ -1,58 +1,78 @@
 /*!
  * jQuery.pwdMeasure
  * jQuery plugin to measure the strength of the password.
- * @version 1.0.2
+ * @version 1.0.3
  * @author tsuyoshiwada
  * @license MIT
- */;(function($, window, undefined){
+ */
+;(function(factory){
 	"use strict";
 
-	var version = "1.0.2",
+  // AMD
+  if( typeof define === "function" && define.amd ){
+    define(["jquery"], factory);
 
-	MAX_CHAR = 12,
+  // CommonJS
+  }else if( typeof exports === "object" ){
+    module.exports = factory(require("jquery"));
+    
+  // Default (browser)
+  }else{
+    factory(jQuery);
+  }
 
-	Status = {
-		VALID: 1,
-		INVALID: 2,
-		NOT_MATCH: 3,
-		EMPTY: 4
-	},
+}(function($){
+	"use strict";
 
-	labelObjDefault = {
-		score: 100,
-		label: "",
-		class: ""
-	},
+	var version = "1.0.3",
 
-	// Default Options
-	defaults = {
-		minScore: 50,
-		minLength: 6,
-		events: "keyup change",
-		labels: [
-			{score:10,         label:"とても弱い", class:"very-weak"},   //0~10%
-			{score:30,         label:"弱い",       class:"weak"},        //11~30%
-			{score:50,         label:"平均",       class:"average"},     //31~50%
-			{score:70,         label:"強い",       class:"strong"},      //51~70%
-			{score:100,        label:"とても強い", class:"very-strong"}, //71~100%
-			{score:"notMatch", label:"不一致",     class:"not-match"},   //not match
-			{score:"empty",    label:"未入力",     class:"empty"}        //empty
-		], 
-		indicator: "#pm-indicator",
-		indicatorTemplate: "パスワード強度: <%= label %> (<%= percentage %>%)",
-		confirm: false,
+			DATA_KEY = "pwdMeasure",
 
-		// Callbacks
-		onValid: false,
-		onInvalid: false,
-		onNotMatch: false,
-		onEmpty: false,
-		onChangeState: false,
-		onChangeValue: false
-	},
+			MAX_CHAR = 12,
 
-	// Namespace
-	ns = "pm";
+			Status = {
+				VALID: 1,
+				INVALID: 2,
+				NOT_MATCH: 3,
+				EMPTY: 4
+			},
+
+			labelObjDefault = {
+				score    : 100,
+				label    : "",
+				className: ""
+			},
+
+			// Default Options
+			defaults = {
+				minScore: 50,
+				minLength: 6,
+				events: "keyup change",
+				labels: [
+					{score:10,         label:"とても弱い", className:"very-weak"},   //0~10%
+					{score:30,         label:"弱い",       className:"weak"},        //11~30%
+					{score:50,         label:"平均",       className:"average"},     //31~50%
+					{score:70,         label:"強い",       className:"strong"},      //51~70%
+					{score:100,        label:"とても強い", className:"very-strong"}, //71~100%
+					{score:"notMatch", label:"不一致",     className:"not-match"},   //not match
+					{score:"empty",    label:"未入力",     className:"empty"}        //empty
+				], 
+				indicator: "#pm-indicator",
+				indicatorTemplate: "パスワード強度: <%= label %> (<%= percentage %>%)",
+				confirm: false,
+
+				// Callbacks
+				onValid: false,
+				onInvalid: false,
+				onNotMatch: false,
+				onEmpty: false,
+				onChangeState: false,
+				onChangeValue: false
+			},
+
+			// Namespace
+			ns = "pm";
+
 
 
 	// ===============================================================
@@ -94,7 +114,7 @@
 		this.options = options;
 
 		this.options.labels = $.map(this.options.labels, function(labelObj){
-			return $.extend({}, labelObjDefault, labelObj);
+			return $.extend(true, {}, labelObjDefault, labelObj);
 		});
 
 		var i;
@@ -180,7 +200,7 @@
 		status = status || _this.status;
 
 		$.each(_this.options.labels, function(i, d){
-			var prev = _this.options.labels[i - 1] || {score:0, label:"", class:""};
+			var prev = _this.options.labels[i - 1] || {score:0, label:"", className:""};
 			if( $.isNumeric(d.score) ){
 				if( !$.isNumeric(prev.score) ) return true; //continue
 				prev.score = parseInt(prev.score);
@@ -259,29 +279,29 @@
 		this._displayIndicator();
 
 		// Callbacks
-		this._callbackApply(this.options.onChangeValue, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+		this._callbackApply(this.options.onChangeValue, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 		
 		if( isChangeStatus ){
 			var type;
 			switch( this.status ){
 				case Status.VALID:
 					type = "valid";
-					this._callbackApply(this.options.onValid, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+					this._callbackApply(this.options.onValid, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 					break;
 				case Status.INVALID:
 					type = "invalid";
-					this._callbackApply(this.options.onInvalid, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+					this._callbackApply(this.options.onInvalid, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 					break;
 				case Status.EMPTY:
 					type = "empty";
-					this._callbackApply(this.options.onEmpty, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+					this._callbackApply(this.options.onEmpty, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 					break;
 				case Status.NOT_MATCH:
 					type = "notMatch";
-					this._callbackApply(this.options.onNotMatch, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class);
+					this._callbackApply(this.options.onNotMatch, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 					break;
 			}
-			this._callbackApply(this.options.onChangeState, this.percentage, this.currentLabelObj.label, this.currentLabelObj.class, type);
+			this._callbackApply(this.options.onChangeState, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className, type);
 		}
 	};
 
@@ -294,8 +314,8 @@
 
 		var html = this.options.indicatorTemplate,
 				args = {
-					label: this.currentLabelObj.label,
-					class: this.currentLabelObj.class,
+					label     : this.currentLabelObj.label,
+					className : this.currentLabelObj.className,
 					percentage: this.percentage
 				};
 
@@ -308,7 +328,7 @@
 		this.$indicator
 			.html(html)
 			.removeClass(this._allLabelClass())
-			.addClass(this.currentLabelObj.class);
+			.addClass(this.currentLabelObj.className);
 	};
 
 	/**
@@ -336,6 +356,7 @@
 	 * @return void
 	 */
 	PwdMeasure.prototype._unbindMethods = function(){
+		// TODO:
 	};
 
 	/**
@@ -357,7 +378,7 @@
 	 */
 	PwdMeasure.prototype._allLabelClass = function(){
 		var className = $.map(this.options.labels, function(labelObj){
-			return labelObj.class;
+			return labelObj.className;
 		});
 		return className.join(" ");
 	};
@@ -368,7 +389,7 @@
 	 */
 	PwdMeasure.prototype.destroy = function(){
 		this._unbindMethods();
-		this.$elem.removeData("pwdMeasure");
+		this.$elem.removeData(DATA_KEY);
 
 		if( this.$indicator.size() > 0 ){
 			this.$indicator
@@ -404,11 +425,11 @@
 	// Run pwdMeasure
 	$.fn.pwdMeasure = function(options){
 		return this.each(function(){
-			if( !$(this).data("pwdMeasure") ){
-				$(this).data("pwdMeasure", new PwdMeasure($(this), $.extend({}, defaults, options)));
+			if( !$(this).data(DATA_KEY) ){
+				$(this).data(DATA_KEY, new PwdMeasure($(this), $.extend(true, {}, defaults, options)));
 			}
 		});
 	};
 
 
-}(jQuery, window));
+}));

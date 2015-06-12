@@ -1,17 +1,22 @@
 {
   "name": "jquery-pwd-measure",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/tsuyoshiwada/jQuery.pwdMeasure",
   "authors": [
     "tsuyoshiwada <v23.b.wada@gmail.com>"
   ],
   "description": "jQuery plugin to measure the strength of the password.",
-  "main": "jquery.pwdMeasure.js",
+  "main": [
+    "jquery.pwdMeasure.js"
+  ],
   "keywords": [
     "jQuery",
     "password"
   ],
   "license": "MIT",
+  "dependencies": {
+    "jquery": ">= 1.7.2"
+  },
   "ignore": [
     "**/.*",
     ".DS_Store",

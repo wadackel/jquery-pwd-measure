@@ -1,13 +1,13 @@
-jQuery.pwdMeasure
+jquery-pwd-measure
 ================
 
 
 ## Version
-1.0.2
+1.0.3
 
 
 ## Description
-パスワードの強度を測定するjQueryプラグインです。
+パスワードの強度を測定して表示するためのjQueryプラグインです。
 
 
 ## Demo
@@ -15,13 +15,14 @@ jQuery.pwdMeasure
 
 
 ## Features
-pwdMeasureの特徴は下記のとおりです。
+PwdMeasureの特徴は下記のとおりです。
 
 * パスワードの強度をパーセント表示可能
 * 単一の入力フィールド、確認フィールドへの対応
 * 強度を示すラベルを詳細に設定可能
 * 必要最低限のパスワード強度をパーセント指定可能
 * 判定をクリアした時、値が変わった時などのコールバックをサポート
+* スタイルシートで自由にデザインを変更可能
 
 
 
@@ -57,6 +58,39 @@ $(document).ready(function(){
 
 
 ## Options
+
+### Defaults
+
+```javascript
+// Default Options
+{
+  minScore: 50,
+  minLength: 6,
+  events: "keyup change",
+  labels: [
+    {score:10,         label:"とても弱い", className:"very-weak"},   //0~10%
+    {score:30,         label:"弱い",       className:"weak"},        //11~30%
+    {score:50,         label:"平均",       className:"average"},     //31~50%
+    {score:70,         label:"強い",       className:"strong"},      //51~70%
+    {score:100,        label:"とても強い", className:"very-strong"}, //71~100%
+    {score:"notMatch", label:"不一致",     className:"not-match"},   //not match
+    {score:"empty",    label:"未入力",     className:"empty"}        //empty
+  ], 
+  indicator: "#pm-indicator",
+  indicatorTemplate: "パスワード強度: <%= label %> (<%= percentage %>%)",
+  confirm: false,
+
+  // Callbacks
+  onValid: false,
+  onInvalid: false,
+  onNotMatch: false,
+  onEmpty: false,
+  onChangeState: false,
+  onChangeValue: false
+}
+```
+
+
 ### minScore
 最低限必要な強度を0~100のパーセントで指定します。  
 **Default: `50`**  
@@ -80,13 +114,13 @@ $(document).ready(function(){
 
 ```javascript
 [
-  {score:10,         label:"とても弱い", class:"very-weak"},   //0~10%
-  {score:30,         label:"弱い",       class:"weak"},        //11~30%
-  {score:50,         label:"平均",       class:"average"},     //31~50%
-  {score:70,         label:"強い",       class:"strong"},      //51~70%
-  {score:100,        label:"とても強い", class:"very-strong"}, //71~100%
-  {score:"notMatch", label:"不一致",     class:"not-match"},   //not match
-  {score:"empty",    label:"未入力",     class:"empty"}        //empty
+  {score:10,         label:"とても弱い", className:"very-weak"},   //0~10%
+  {score:30,         label:"弱い",       className:"weak"},        //11~30%
+  {score:50,         label:"平均",       className:"average"},     //31~50%
+  {score:70,         label:"強い",       className:"strong"},      //51~70%
+  {score:100,        label:"とても強い", className:"very-strong"}, //71~100%
+  {score:"notMatch", label:"不一致",     className:"not-match"},   //not match
+  {score:"empty",    label:"未入力",     className:"empty"}        //empty
 ]
 ```
 
@@ -96,7 +130,7 @@ $(document).ready(function(){
 
 * `score`: 該当する範囲をパーセント(整数)指定 `0~100` or `"notMatch"`
 * `label`: 対応するラベル `string`
-* `class`: 対応するクラス名 `string`
+* `className`: 対応するクラス名 `string`
 
 `score`には例外が存在します。それぞれのルールは下記のとおりです。
 
@@ -116,9 +150,9 @@ $(document).ready(function(){
 強度を示すラベルを表示する`<%= キー %>`形式で指定します。  
 使用できるキーは下記です。
 
-* label
-* class
-* percentage
+* `label`
+* `className`
+* `percentage`
 
 **Type: `string | jQueryObj | DOM Elements`**  
 **Default: `パスワード強度: <%= label %> (<%= percentage %>%)`**
@@ -164,8 +198,18 @@ $(document).ready(function(){
 **Type: `function`**
 
 
-## Requirements
+## Dependencies
 jQuery 1.7.2 +
+
+
+## TODO
+以下、優先順位順。
+
+1. テストを書く
+2. デモページの移行 (Github上に作成)
+3. コールバックとは別にイベントを提供する
+4. 文字列から、強度を測定するグローバルAPIを提供
+5. CSSのテーマを作成 (オプションで選択できるようにする予定)
 
 
 ## Licence
