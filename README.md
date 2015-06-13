@@ -1,7 +1,7 @@
 jquery-pwd-measure
 ================
 
-[![Build Status](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure.svg?branch=dev)](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure)
+[![Build Status](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure.svg?branch=master)](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure)
 
 
 ## Version
