@@ -1,11 +1,14 @@
 {
   "name": "jQuery.pwdMeasure",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "jQuery plugin to measure the strength of the password.",
   "main": "jquery.pwdMeasure.js",
+  "scripts": {
+    "test": "gulp test"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tsuyoshiwada/jQuery.pwdMeasure.git"
+    "url": "https://github.com/tsuyoshiwada/jquery-pwd-measure.git"
   },
   "keywords": [
     "jquery",
@@ -13,23 +16,24 @@
   ],
   "author": "tsuyoshiwada",
   "license": "MIT",
-  "homepage": "https://github.com/tsuyoshiwada/jQuery.pwdMeasure",
+  "homepage": "https://github.com/tsuyoshiwada/jquery-pwd-measure",
   "devDependencies": {
-    "browser-sync": "^2.0.1",
     "coffee-script": "^1.9.0",
+    "del": "^1.2.0",
     "gulp": "^3.8.11",
-    "gulp-header": "^1.2.2",
     "gulp-jshint": "^1.9.2",
     "gulp-load-plugins": "^0.8.0",
     "gulp-plumber": "^0.6.6",
+    "gulp-qunit": "^1.2.1",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0",
-    "rimraf": "^2.2.8"
+    "run-sequence": "^1.1.0"
   },
   "dependencies": {
     "jquery": ">=1.7.2"
   },
   "jshintConfig": {
+    "lookup": false,
     "strict": true,
     "indent": 2,
     "maxlen": 140,

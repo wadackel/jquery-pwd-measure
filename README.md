@@ -3,7 +3,7 @@ jquery-pwd-measure
 
 
 ## Version
-1.0.3
+1.0.4
 
 
 ## Description
@@ -11,7 +11,7 @@ jquery-pwd-measure
 
 
 ## Demo
-[http://webdesign-dackel.com/dev/pwd-measure/](http://webdesign-dackel.com/dev/pwd-measure/)
+準備中
 
 
 ## Features
@@ -31,7 +31,13 @@ PwdMeasureの特徴は下記のとおりです。
 ### Bower
 
 ```
-$ bower install jquery-pwd-measure
+$ bower install jquery-pwd-measure --save
+```
+
+### NPM
+
+```
+$ npm install jquery-pwd-measure --save
 ```
 
 ### Install

@@ -1,7 +1,7 @@
 {
   "name": "jquery-pwd-measure",
-  "version": "1.0.3",
-  "homepage": "https://github.com/tsuyoshiwada/jQuery.pwdMeasure",
+  "version": "1.0.4",
+  "homepage": "https://github.com/tsuyoshiwada/jquery-pwd-measure",
   "authors": [
     "tsuyoshiwada <v23.b.wada@gmail.com>"
   ],
@@ -22,10 +22,9 @@
     ".DS_Store",
     ".sass-cache",
     ".gitignore",
-    "src",
     "gulpfile.coffee",
     "package.json",
-    "examples",
+    "tmp",
     "node_modules",
     "bower_components"
   ]

@@ -1,7 +1,7 @@
 /*!
  * jQuery.pwdMeasure
  * jQuery plugin to measure the strength of the password.
- * @version 1.0.3
+ * @version 1.0.4
  * @author tsuyoshiwada
  * @license MIT
  */
@@ -21,20 +21,21 @@
     factory(jQuery);
   }
 
+
 }(function($){
 	"use strict";
 
-	var version = "1.0.3",
+	var VERSION = "1.0.4",
 
 			DATA_KEY = "pwdMeasure",
 
 			MAX_CHAR = 12,
 
 			Status = {
-				VALID: 1,
-				INVALID: 2,
+				VALID    : 1,
+				INVALID  : 2,
 				NOT_MATCH: 3,
-				EMPTY: 4
+				EMPTY    : 4
 			},
 
 			labelObjDefault = {
@@ -83,7 +84,7 @@
 	}
 
 	PwdMeasure.prototype = {
-		version: version,
+		version: VERSION,
 		options: {},
 		eventName: "",
 
@@ -105,14 +106,13 @@
 	};
 
 	/**
-	 * 初期化
+	 * Initialization of PwdMeausre instance.
 	 * @param jQueryObj
 	 * @param object
 	 * @return void
 	 */
 	PwdMeasure.prototype._initialize = function($elem, options){
 		this.options = options;
-
 		this.options.labels = $.map(this.options.labels, function(labelObj){
 			return $.extend(true, {}, labelObjDefault, labelObj);
 		});
@@ -134,12 +134,12 @@
 			this.indicatorDefaultHtml = this.$indicator.html();
 		}
 
-		this.update();
+		this.update(true);
 		this._bindMethods();
 	};
 
 	/**
-	 * 現在の値から強度を求める
+	 * Seek strength from the current value.
 	 * @return void
 	 */
 	PwdMeasure.prototype.calc = function(){
@@ -187,7 +187,7 @@
 	};
 
 	/**
-	 * パスワード強度を元に適切なラベル用のインデックスを取得
+	 * Get the index for the appropriate label the password strength to the original.
 	 * @param integer
 	 * @param integer
 	 * @return string
@@ -221,7 +221,7 @@
 	};
 
 	/**
-	 * パスワード強度を元に適切なラベルオブジェクトを取得
+	 * Get the appropriate label object the password strength to the original.
 	 * @param integer
 	 * @param integer
 	 * @return string
@@ -232,14 +232,17 @@
 	};
 
 	/**
-	 * 入力フィールドの値を元に状態を更新
+	 * Updated state based on the value of the input field.
+	 * @param boolean 
 	 * @return void
 	 */
-	PwdMeasure.prototype.update = function(){
+	PwdMeasure.prototype.update = function(isInitialize){
 		var status = this.status,
 				val1 = this.$elem.val(),
 				val2 = this.$confirm.val(),
 				confirmSize = this.$confirm.size();
+
+		isInitialize = isInitialize === true ? true : false;
 
 		// Upadte strength percentage
 		this.calc();
@@ -279,7 +282,9 @@
 		this._displayIndicator();
 
 		// Callbacks
-		this._callbackApply(this.options.onChangeValue, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
+		if( !isInitialize ){
+			this._callbackApply(this.options.onChangeValue, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
+		}
 		
 		if( isChangeStatus ){
 			var type;
@@ -301,12 +306,14 @@
 					this._callbackApply(this.options.onNotMatch, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className);
 					break;
 			}
-			this._callbackApply(this.options.onChangeState, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className, type);
+			if( !isInitialize ){
+				this._callbackApply(this.options.onChangeState, this.percentage, this.currentLabelObj.label, this.currentLabelObj.className, type);
+			}
 		}
 	};
 
 	/**
-	 * 現在の状態を描画
+	 * Render the current state.
 	 * @return void
 	 */
 	PwdMeasure.prototype._displayIndicator = function(){
@@ -332,7 +339,7 @@
 	};
 
 	/**
-	 * 各種イベントを設定
+	 * Set the various events.
 	 * @return void
 	 */
 	PwdMeasure.prototype._bindMethods = function(){
@@ -352,7 +359,7 @@
 	};
 
 	/**
-	 * 各種イベントを解除
+	 * Unbind various events.
 	 * @return void
 	 */
 	PwdMeasure.prototype._unbindMethods = function(){
@@ -360,7 +367,7 @@
 	};
 
 	/**
-	 * thisを束縛してコールバックを実行
+	 * Run a callback.
 	 * @param function
 	 * @param [param1, param2, ...]
 	 * @return boolean
@@ -373,7 +380,7 @@
 	};
 
 	/**
-	 * 全てのラベルクラスを文字列で取得
+	 * Get all of the label className by string.
 	 * @return string
 	 */
 	PwdMeasure.prototype._allLabelClass = function(){
@@ -384,7 +391,7 @@
 	};
 
 	/**
-	 * プラグインを削除
+	 * Remove the pwdMeasure.
 	 * @return void
 	 */
 	PwdMeasure.prototype.destroy = function(){
@@ -430,6 +437,4 @@
 			}
 		});
 	};
-
-
 }));
