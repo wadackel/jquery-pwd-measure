@@ -28,26 +28,122 @@ html
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-    h1
-      i.fa.fa-code
-      | jQuery.pwdMeasure.js
+    a(href="https://github.com/tsuyoshiwada/jquery-pwd-measure")
+      img(style="position: absolute; top: 0; right: 0; border: 0;", src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67", alt="Fork me on GitHub", data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png")
 
-    p jQuery.pwdMeasure.js is jQuery plug-in that measure the strength of the password.
+    div.hero
+      div.container
+        h1
+          i.fa.fa-code
+          |  jQuery.pwdMeasure.js
 
-    h2
-      i.fa.fa-hand-o-right
-      | Demo
+        p jQuery.pwdMeasure.js is jQuery plug-in that measure the strength of the password.
+
+        ul.list-inline
+          li
+            a.btn.btn--hero(href="https://raw.githubusercontent.com/tsuyoshiwada/jquery-pwd-measure/master/jquery.pwdMeasure.min.js", download)
+              i.fa.fa-download
+              |  Download
+          li
+            a.btn.btn--hero(href="https://github.com/tsuyoshiwada/jquery-pwd-measure")
+              i.fa.fa-github
+              |  Github
     
-    input#pm-input(type="password", value="", placeholder="Your password")
-    div#pm-indicator
+    div.container.contents
+      div.section
+        h2.section__title
+          i.fa.fa-hand-o-right
+          |  Demo
+        
+        input#pm-input(type="password", value="", placeholder="Your password")
+        div#pm-indicator
 
-    div.show-code
-      :markdown
-        ```js
-        $(document).ready(function(){
-          $("#pm-input").pwdMeasure();
-        });
-        ```
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```js
+            $(document).ready(function(){
+              $("#pm-input").pwdMeasure();
+            });
+            ```
+
+      div.section
+        h2.section__title
+          i.fa.fa-paragraph
+          |  Description
+
+        p <code>jQuery.pwdMeasure.js</code>はパスワードの強度を測定する<code>jQuery</code>プラグインです。
+        p 主な特徴は下記の通りです。
+        ul
+          li パスワードの強度をパーセント表示可能
+          li 単一の入力フィールド、確認フィールドへの対応
+          li 強度を示すラベルを詳細に設定可能
+          li 必要最低限のパスワード強度をパーセント指定可能
+          li 判定をクリアした時、値が変わった時などのコールバックをサポート
+
+
+      div.section
+        h2.section__title
+          i.fa.fa-rocket
+          |  How To Use
+        
+        h3 Install
+        p いつも通り<code>script</code>タグで読み込む方法以外に、<code>Bower</code>と<code>npm</code>でのインストールをサポートしています。
+
+        h4 Bower
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```
+            $ bower install jquery-pwd-measure
+            ```
+        
+        h4 npm
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```
+            $ npm install jquery-pwd-measure
+            ```
+        
+        h4 script
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```html
+            <script type="text/javascript" src="./jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="./jquery.pwdMeasure.min.js"></script>
+            ```
+
+        h3 Basic
+        h4 HTML
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```html
+            <input type="password" id="pm-input" value="" placeholder="Your Password">
+            <div id="pm-indicator"></div>
+            ```
+
+        h4 JavaScript
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```js
+            $(document).ready(function(){
+              $("#pm-input").pwdMeasure();
+            });
+            ```
+
+      
+      div.section
+        h2.section__title
+          i.fa.fa-dot-circle-o
+          |  Examples
+
+        h3 Basic
+        p 最も基本的な使い方です。単一の入力フィールドに対して、強度判定を行ないます。
+
 
     script(type="text/javascript", src="./js/google-code-prettify/prettify.js")
     script(type="text/javascript", src="./js/jquery-1.11.1.min.js")
