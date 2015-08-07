@@ -1,0 +1,69 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="description", content="jQuery.pwdMeasure.jsはパスワードの強度を測定するjQueryプラグインです。")
+    meta(name="keywords", content="jQuery, パスワード, 強度, プラグイン, jQuery.pwdMeasure.js")
+    meta(property="og:locale", content="ja_JP")
+    meta(property="og:type", content="website")
+    meta(property="og:title", content="jQuery.pwdMeasure.js")
+    meta(property="og:description", content="jQuery.pwdMeasure.jsはパスワードの強度を測定するjQueryプラグインです。")
+    meta(property="og:url", content="")
+    meta(property="og:site_name", content="jQuery.pwdMeasure.js")
+    title jQuery.pwdMeasure.js
+    meta(name="viewport", content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+    link(rel="shortcut icon", href="./favicon.ico")
+    link(rel="stylesheet", href="./js/google-code-prettify/prettify.css")
+    link(rel="stylesheet", href="./css/style.css")
+
+  body
+    #fb-root
+      script.
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    h1
+      i.fa.fa-code
+      | jQuery.pwdMeasure.js
+
+    p jQuery.pwdMeasure.js is jQuery plug-in that measure the strength of the password.
+
+    h2
+      i.fa.fa-hand-o-right
+      | Demo
+    
+    input#pm-input(type="password", value="", placeholder="Your password")
+    div#pm-indicator
+
+    div.show-code
+      :markdown
+        ```js
+        $(document).ready(function(){
+          $("#pm-input").pwdMeasure();
+        });
+        ```
+
+    script(type="text/javascript", src="./js/google-code-prettify/prettify.js")
+    script(type="text/javascript", src="./js/jquery-1.11.1.min.js")
+    script(type="text/javascript", src="./js/jquery.pwdMeasure.js")
+    script.
+      $(function(){
+
+        $(".show-code").each(function(){
+          $("code", this).addClass("prettyprint");
+        });
+
+        prettyPrint();
+        
+        // demo
+        $(document).ready(function(){
+          $("#pm-input").pwdMeasure();
+        });
+
+      });

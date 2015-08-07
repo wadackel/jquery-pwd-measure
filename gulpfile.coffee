@@ -4,6 +4,12 @@ del = require("del")
 runSequence = require("run-sequence")
 
 
+
+
+# ========================================================
+# Core
+# ========================================================
+
 # jshint
 gulp.task("jshint", ->
   gulp.src("./jquery.pwdMeasure.js")
@@ -48,6 +54,46 @@ gulp.task("build", (cb) ->
     "jshint",
     "compile",
     "test",
+    cb
+  )
+)
+
+
+
+
+# ========================================================
+# Demo
+# ========================================================
+
+gulp.task("demo:jade", ->
+  gulp.src([
+    "./demo/jade/**/*.jade"
+    "!./demo/jade/**/_*.jade"
+  ])
+  .pipe($.plumber())
+  .pipe($.jade(pretty: true))
+  .pipe(gulp.dest("./demo/"))
+)
+
+
+gulp.task("demo:sass", ->
+  gulp.src("./demo/sass/**/*.scss")
+  .pipe($.plumber())
+  .pipe($.sass.sync(outputStyle: "compressed"))
+  .pipe($.autoprefixer())
+  .pipe(gulp.dest("./demo/css"))
+)
+
+
+gulp.task("demo:watch", ["demo:sass", "demo:jade"], ->
+  gulp.watch("./demo/sass/**/*", ["demo:sass"]);
+  gulp.watch("./demo/jade/**/*", ["demo:jade"]);
+)
+
+
+gulp.task("demo:build", (cb) ->
+  runSequence(
+    ["demo:jade", "demo:sass"],
     cb
   )
 )
