@@ -12,7 +12,7 @@ $color-primary-dark:#455a64;
 $color-primary:#607d8b;
 $color-primary-light:#cfd8dc;
 $color-primary-text:#ffffff;
-$color-accent:#ffc107;
+$color-accent:#29B6F6;
 $color-text-primary:#212121;
 $color-text-secondary:#727272;
 $color-divider:#b6b6b6;
@@ -80,6 +80,7 @@ h4,
 h5,
 h6 {
   @include font-accent;
+  color:$color-text-primary;
 }
 
 h1 {
@@ -202,6 +203,7 @@ pre {
   color:#fff;
   h1 {
     margin-top:0;
+    color:#fff;
   }
 }
 
@@ -217,8 +219,12 @@ pre {
 .section {
   position:relative;
   margin-bottom:4em;
+  color:$color-text-secondary;
   @include e(title) {
     margin-top:0;
+    .fa {
+      color:$color-text-secondary;
+    }
   }
 }
 
