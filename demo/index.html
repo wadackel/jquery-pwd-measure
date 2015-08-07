@@ -43,15 +43,11 @@
     <div class="container contents">
       <div class="section">
         <h2 class="section__title"><i class="fa fa-hand-o-right"></i> Demo</h2>
-        <input id="pm-input" type="password" value="" placeholder="Your password">
-        <div id="pm-indicator"></div>
-        <div class="show-code">
-          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(document).ready(function(){
-  $(&quot;#pm-input&quot;).pwdMeasure();
-});
-</code></pre>
-
+        <div class="form-group">
+          <label class="form-group__label">パスワード</label>
+          <input id="demo-pm-input" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
+        <div id="demo-pm-indicator" class="pm-indicator"></div>
       </div>
       <div class="section">
         <h2 class="section__title"><i class="fa fa-paragraph"></i> Description</h2>
@@ -106,8 +102,252 @@
       <div class="section">
         <h2 class="section__title"><i class="fa fa-dot-circle-o"></i> Examples</h2>
         <h3>Basic</h3>
-        <p>最も基本的な使い方です。単一の入力フィールドに対して、強度判定を行ないます。</p>
+        <p>
+          最も基本的な使い方です。単一の入力フィールドに対して、強度判定を行ないます。<br />
+          デフォルトで<code>#pm-indicator</code>に強度が表示されます。
+        </p>
+        <div class="form-group">
+          <label class="form-group__label">パスワード</label>
+          <input id="pm-input" type="password" value="" placeholder="Your password" class="form-group__input">
+        </div>
+        <div id="pm-indicator" class="pm-indicator"></div>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(&quot;#pm-input&quot;).pwdMeasure();
+</code></pre>
+
+        </div>
+        <h3>Confirm</h3>
+        <p><code>confirm</code>オプションで確認用のフィールドを指定した例です。確認用のフィールドがある場合は、値が一致しているかのチェックも行ないます。</p>
+        <div class="form-group">
+          <label class="form-group__label">パスワード</label>
+          <input id="pm-input2" type="password" value="" placeholder="Your password" class="form-group__input">
+        </div>
+        <div class="form-group">
+          <label class="form-group__label">パスワード確認</label>
+          <input id="pm-confirm2" type="password" value="" placeholder="Your password" class="form-group__input">
+        </div>
+        <div id="pm-indicator2" class="pm-indicator"></div>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(&quot;#pm-input2&quot;).pwdMeasure({
+  indicator: &quot;#pm-indicator2&quot;,
+  confirm: &quot;#pm-input-confirm2&quot;
+});
+</code></pre>
+
+        </div>
+        <h3>Change Labels</h3>
+        <p>表示ラベルを変更する例です。</p>
+        <div class="form-group">
+          <label class="form-group__label">パスワード</label>
+          <input id="pm-input3" type="password" value="" placeholder="Your password" class="form-group__input">
+        </div>
+        <div id="pm-indicator3" class="pm-indicator"></div>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(&quot;#pm-input3&quot;).pwdMeasure({
+  indicator: &quot;#pm-indicator3&quot;,
+  indicatorTemplate: &quot;&lt;%= label %&gt;&quot;,
+  labels: [
+    {score:10, label:&quot;Level 1&quot;, className:&quot;very-weak&quot;},
+    {score:30, label:&quot;Level 2&quot;, className:&quot;weak&quot;},
+    {score:50, label:&quot;Level 3&quot;, className:&quot;average&quot;},
+    {score:70, label:&quot;Level 4&quot;, className:&quot;strong&quot;},
+    {score:100, label:&quot;Max!!&quot;, className:&quot;very-strong&quot;}
+  ]
+});
+</code></pre>
+
+        </div>
+        <h3>Change Events</h3>
+        <p>強度判定を行うタイミングを決める為のイベントを変更することが出来ます。下記では<code>change</code>のみに絞っています。</p>
+        <div class="form-group">
+          <label class="form-group__label">パスワード</label>
+          <input id="pm-input4" type="password" value="" placeholder="Your password" class="form-group__input">
+        </div>
+        <div id="pm-indicator4" class="pm-indicator"></div>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(&quot;#pm-input4&quot;).pwdMeasure({
+  indicator: &quot;#pm-indicator4&quot;,
+  events: &quot;change&quot;
+});
+</code></pre>
+
+        </div>
+        <h3>Use Callback</h3>
+        <p>
+          コールバックを使用して、パスワードが一定の強度より低い場合はフォームの送信を止める例です。<br />
+          下記では強度を示すパーセントが50以下の場合送信をキャンセルします。
+        </p>
+        <form id="pm-form5">
+          <div class="form-group">
+            <label class="form-group__label">パスワード</label>
+            <input id="pm-input5" type="password" value="" placeholder="Your password" class="form-group__input">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label">パスワード</label>
+            <input id="pm-confirm5" type="password" value="" placeholder="Your password" class="form-group__input">
+          </div>
+          <div id="pm-indicator5" class="pm-indicator"></div>
+          <div class="text-center">
+            <button type="submit" class="btn btn--primary">Submit!</button>
+          </div>
+        </form>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">var $form = $(&quot;#pm-form5&quot;);
+
+// submitイベントをキャンセル
+function formCancelSubmit(){
+  $form.off(&quot;submit&quot;).on(&quot;submit&quot;, function(e){
+    alert(&quot;パスワードが一致しないか基準値に達していません！&quot;);
+    e.preventDefault();
+  });
+}
+formCancelSubmit();
+
+// コールバックを使用する
+$(&quot;#pm-input5&quot;).pwdMeasure({
+  minScore: 50,
+  confirm: &quot;#pm-confirm5&quot;,
+  indicator: &quot;#pm-indicator5&quot;,
+  onValid: function(percentage, label, className){
+    $form.off(&quot;submit&quot;);
+  },
+  onInvalid: function(percentage, label, className){
+    formCancelSubmit();
+  }
+});
+</code></pre>
+
+        </div>
       </div>
+      <div class="section">
+        <h2 class="section__title"><i class="fa fa-code"></i> Default Options</h2>
+        <p>オプションを指定せずに実行した場合、下記のオプションが適用されます。各オプションの詳細は<a href="https://github.com/tsuyoshiwada/jquery-pwd-measure">リポジトリ</a>にてご確認下さい。</p>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code class="lang-js">$(selector).pwdMeasure({
+  minScore: 50,
+  minLength: 6,
+  events: &quot;keyup change&quot;,
+  labels: [
+    {score:10,         label:&quot;とても弱い&quot;, className:&quot;very-weak&quot;},   //0~10%
+    {score:30,         label:&quot;弱い&quot;,       className:&quot;weak&quot;},        //11~30%
+    {score:50,         label:&quot;平均&quot;,       className:&quot;average&quot;},     //31~50%
+    {score:70,         label:&quot;強い&quot;,       className:&quot;strong&quot;},      //51~70%
+    {score:100,        label:&quot;とても強い&quot;, className:&quot;very-strong&quot;}, //71~100%
+    {score:&quot;notMatch&quot;, label:&quot;不一致&quot;,     className:&quot;not-match&quot;},   //not match
+    {score:&quot;empty&quot;,    label:&quot;未入力&quot;,     className:&quot;empty&quot;}        //empty
+  ],
+  indicator: &quot;#pm-indicator&quot;,
+  indicatorTemplate: &quot;パスワード強度: &lt;%= label %&gt; (&lt;%= percentage %&gt;%)&quot;,
+  confirm: false,
+
+  // Callbacks
+  onValid: false,
+  onInvalid: false,
+  onNotMatch: false,
+  onEmpty: false,
+  onChangeState: false,
+  onChangeValue: false
+});
+</code></pre>
+
+        </div>
+      </div>
+      <div class="section">
+        <h2 class="section__title"><i class="fa fa-file-code-o"></i> CSS Example</h2>
+        <p>
+          <code>jQuery.pwdMeasure.js</code>では、スタイルを柔軟に設定することが出来ます。<br />
+          このページで強度表示に使用しているスタイルは次のとおりです。是非参考にしてみてください。
+        </p>
+        <h3>CSS
+          <div class="show-code">
+            <button class="show-code__copy">Copy</button><pre><code class="lang-css">.pm-indicator {
+  margin:10px 0;
+  padding:1.5em 1em;
+  color:#2c3e50;
+  font-size:12px;
+  text-align:center;
+  border:1px solid #ccc;
+  border-radius:2px;
+  background:#e4e4e4;
+  text-shadow:1px 1px 0 rgba(255,255,255,.8);
+  -webkit-transition:all .2s ease-in-out;
+          transition:all .2s ease-in-out;
+}
+
+.pm-indicator.very-weak,
+.pm-indicator.not-match {
+  border-color:#be1d30;
+  background-color:#ffc3cf;
+}
+
+.pm-indicator.weak {
+  border-color:#ff787d;
+  background-color:#ffe6e5;
+}
+
+.pm-indicator.strong {
+  border-color:#78bc42;
+  background-color:#bceea6;
+}
+
+.pm-indicator.very-strong {
+  border-color:#4f85a7;
+  background-color:#68c6d7;
+}
+</code></pre>
+
+          </div>
+        </h3>
+        <h3>Scss
+          <div class="show-code">
+            <button class="show-code__copy">Copy</button><pre><code class="lang-css">.pm-indicator {
+  margin:10px 0;
+  padding:1.5em 1em;
+  background:#e4e4e4;
+  border:1px solid #ccc;
+  border-radius:2px;
+  color:#2c3e50;
+  font-size:12px;
+  text-shadow:1px 1px 0 rgba(255, 255, 255, .8);
+  text-align:center;
+  transition:all .2s ease-in-out;
+  &amp;.very-weak,
+  &amp;.not-match {
+    background-color:#ffc3cf;
+    border-color:#be1d30;
+  }
+  &amp;.weak {
+    background-color:#ffe6e5;
+    border-color:#ff787d;
+  }
+  &amp;.average {
+  }
+  &amp;.strong {
+    background-color:#bceea6;
+    border-color:#78bc42;
+  }
+  &amp;.very-strong {
+    background-color:#68c6d7;
+    border-color:#4f85a7;
+  }
+}
+</code></pre>
+
+          </div>
+        </h3>
+      </div>
+      <div class="section">
+        <h2 class="section__title"> <i class="fa fa-bell-o"></i> Change Log</h2>
+        <h3>2015.06.13</h3>
+        <p>IE8以下で起きるエラーの修正。(<code>labels</code>内の<code>class</code>を<code>className</code>に変更しています)</p>
+        <h3>2015.02.14</h3>
+        <p><code>bower</code>を使ったインストールに対応 &amp; <code>empty</code>オプションの追加</p>
+        <h3>2015.01.24</h3>
+        <p>First Release.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <p class="copyright"><a href="https://github.com/tsuyoshiwada">tsuyoshiwada</a> Copyright © All Right Reserved.</p>
     </div>
     <script type="text/javascript" src="./js/google-code-prettify/prettify.js"></script>
     <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
@@ -122,9 +362,64 @@
         prettyPrint();
         
         // demo
-        $(document).ready(function(){
-          $("#pm-input").pwdMeasure();
+        $("#demo-pm-input").pwdMeasure({
+          indicator: "#demo-pm-indicator"
         });
+        
+        // basic
+        $("#pm-input").pwdMeasure();
+      
+        // confirm
+        $("#pm-input2").pwdMeasure({
+          indicator: "#pm-indicator2",
+          confirm: "#pm-confirm2"
+        });
+      
+        // change labels
+        $("#pm-input3").pwdMeasure({
+          indicator: "#pm-indicator3",
+          indicatorTemplate: "<%= label %>",
+          labels: [
+            {score:10, label:"Level 1", className:"very-weak"},
+            {score:30, label:"Level 2", className:"weak"},
+            {score:50, label:"Level 3", className:"average"},
+            {score:70, label:"Level 4", className:"strong"},
+            {score:100, label:"Max!!", className:"very-strong"}
+          ]
+        });
+      
+        // change events
+        $("#pm-input4").pwdMeasure({
+          indicator: "#pm-indicator4",
+          events: "change"
+        });
+      
+        // use callback
+        (function(){
+          var $form = $("#pm-form5");
+      
+          // submitイベントをキャンセル
+          function formCancelSubmit(){
+            $form.off("submit").on("submit", function(e){
+              alert("パスワードが一致しないか基準値に達していません！");
+              e.preventDefault();
+            });
+          }
+          formCancelSubmit();
+      
+          // コールバックを使用する
+          $("#pm-input5").pwdMeasure({
+            minScore: 50,
+            confirm: "#pm-confirm5",
+            indicator: "#pm-indicator5",
+            onValid: function(percentage, label, className){
+              $form.off("submit");
+            },
+            onInvalid: function(percentage, label, className){
+              formCancelSubmit();
+            }
+          });
+        }());
       
       });
     </script>
