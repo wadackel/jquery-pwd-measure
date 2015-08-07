@@ -1,4 +1,247 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 @import "font-awesome/font-awesome";
 @import "normalize.scss";
+@import "easings";
 
 
+//== Variables
+$content-width:720px;
+$content-padding:30px;
+
+$color-primary-dark:#455a64;
+$color-primary:#607d8b;
+$color-primary-light:#cfd8dc;
+$color-primary-text:#ffffff;
+$color-accent:#ffc107;
+$color-text-primary:#212121;
+$color-text-secondary:#727272;
+$color-divider:#b6b6b6;
+$color-bg:#fff;
+
+$font-size:18px;
+$font-sans-serif:"ヒラギノ角ゴ Pro W3","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","Hiragino Kaku Gothic ProN",Arial,Helvetica,"メイリオ",Meiryo,cursive;
+$font-accent:"Roboto Slab",serif;
+
+
+//== Mixins
+@mixin font-accent() {
+  font-family:$font-accent;
+  font-weight:bold;
+}
+
+@mixin e($name) {
+  @at-root &__#{$name} {
+    @content;
+  }
+}
+
+@mixin m($name) {
+  @at-root &--#{$name} {
+    @content;
+  }
+}
+
+@mixin btn-theme-factory($color, $color-active) {
+  color:$color;
+  background-color:transparent;
+  border-color:$color;
+  transform:scale(1, 1);
+  &:hover {
+    color:$color;
+    background-color:$color-active;
+    border-color:$color-active;
+    transform:scale(.98, .98);
+  }
+  &:active {
+    color:$color;
+    background-color:$color-active;
+    border-color:$color-active;
+    transform:scale(.96, .96);
+  }
+}
+
+
+//== Bases
+body,
+html {
+  width:100%;
+  height:100%;
+  background:$color-bg;
+  color:$color-text-primary;
+  font-size:$font-size;
+  font-family:$font-sans-serif;
+  line-height:1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-accent;
+}
+
+h1 {
+  font-size:2.6rem;
+}
+
+h2 {
+  font-size:2rem;
+}
+
+h3 {
+  margin-top:1em;
+  margin-bottom:.5em;
+  font-size:1.6rem;
+}
+
+h4 {
+  margin-top:.8em;
+  margin-bottom:.3em;
+  font-size:1.2rem;
+}
+
+code {
+  display:inline-block;
+  margin-right:.1em;
+  margin-left:.1em;
+  padding:.1em .3em;
+  border-radius:3px;
+  color:$color-text-primary;
+  background-color:lighten($color-primary-light, 10%);
+}
+
+pre {
+  code {
+    display:block;
+  }
+}
+
+
+::selection {
+  background:$color-primary-dark;
+}
+
+::-moz-selection {
+  background:$color-primary-dark;
+}
+
+
+//== Components
+.prettyprint {
+  margin-right:0;
+  margin-left:0;
+  padding:1em;
+  border-radius:6px;
+  font-size:round($font-size / 1.2);
+}
+
+.clearfix {
+  zoom:1;
+  &:after {
+    content:"";
+    clear:both;
+    display:block;
+  }
+}
+
+.list-inline {
+  font-size:0;
+  padding-left:0;
+  > li {
+    display:inline-block;
+    list-style:none;
+    font-size:$font-size;
+    & + li {
+      margin-left:1em;
+    }
+  }
+}
+
+.btn {
+  @include font-accent;
+  display:inline-block;
+  padding:.8em 2em;
+  border-width:2px;
+  border-style:solid;
+  border-radius:6px;
+  font-size:$font-size;
+  font-weight:bold;
+  line-height:1.2;
+  text-align:center;
+  text-decoration:none;
+  cursor:pointer;
+  user-select:none;
+  transition:all .2s $ease-out-cubic;
+  &:focus {
+    outline:none;
+  }
+  @include m(default) {
+  }
+  @include m(primary) {
+  }
+  @include m(hero) {
+    @include btn-theme-factory(#fff, $color-accent);
+  }
+}
+
+.container {
+  @extend .clearfix;
+  position:relative;
+  width:$content-width;
+  margin-right:auto;
+  margin-left:auto;
+  padding-right:$content-padding;
+  padding-left:$content-padding;
+}
+
+.hero {
+  padding:60px 0 120px 0;
+  background:$color-primary;
+  color:#fff;
+  h1 {
+    margin-top:0;
+  }
+}
+
+.contents {
+  margin-top:-60px;
+  margin-bottom:90px;
+  padding-top:$content-padding;
+  padding-bottom:$content-padding;
+  background:#fff;
+  box-shadow:0 3px 3px rgba(0, 0, 0, .2);
+}
+
+.section {
+  position:relative;
+  margin-bottom:4em;
+  @include e(title) {
+    margin-top:0;
+  }
+}
+
+.show-code {
+  position:relative;
+  code {
+    border-width:0;
+  }
+  @include e(copy) {
+    @extend .btn;
+    position:absolute;
+    top:0;
+    right:0;
+    z-index:10;
+    padding:5px 8px;
+    font-size:12px;
+    border-width:0;
+    border-radius:0 6px 0 3px;
+    background:lighten(#2d2d2d, 8%);
+    color:#ccc;
+    &:hover {
+      background:darken($color-accent, 10%);
+      color:#fff;
+    }
+  }
+}
