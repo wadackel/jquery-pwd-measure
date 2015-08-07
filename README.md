@@ -1,11 +1,9 @@
 jquery-pwd-measure
 ================
 
-[![Build Status](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure.svg?branch=master)](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure)
-
-
-## Version
-1.0.4
+[![Travis](https://img.shields.io/travis/tsuyoshiwada/jquery-pwd-measure.svg?branch=master&style=flat-square)](https://travis-ci.org/tsuyoshiwada/jquery-pwd-measure)
+[![npm](https://img.shields.io/npm/v/jquery-pwd-measure.svg?style=flat-square)](https://www.npmjs.com/package/jquery-pwd-measure)
+[![Bower](https://img.shields.io/bower/v/jquery-pwd-measure.svg?style=flat-square)](http://bower.io/search/?q=jquery-pwd-measure)
 
 
 ## Description
@@ -17,7 +15,7 @@ jquery-pwd-measure
 
 
 ## Features
-PwdMeasureの特徴は下記のとおりです。
+`PwdMeasure`の特徴は下記のとおりです。
 
 * パスワードの強度をパーセント表示可能
 * 単一の入力フィールド、確認フィールドへの対応
@@ -36,13 +34,13 @@ PwdMeasureの特徴は下記のとおりです。
 $ bower install jquery-pwd-measure --save
 ```
 
-### NPM
+### npm
 
 ```
 $ npm install jquery-pwd-measure --save
 ```
 
-### Install
+### Basic
 
 ```html
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -100,25 +98,32 @@ $(document).ready(function(){
 
 
 ### minScore
-最低限必要な強度を0~100のパーセントで指定します。  
 **Default: `50`**  
 **Type: `integer`**
 
+最低限必要な強度を0~100のパーセントで指定します。  
+
+
 ### minLength
-最低限必要な文字数を指定します。  
-ここで指定した文字数と`minScore`の値から入力されたパスワードの強度を求めます。  
 **Default: `6`**  
 **Type: `integer`**
 
+最低限必要な文字数を指定します。  
+ここで指定した文字数と`minScore`の値から入力されたパスワードの強度を求めます。  
+
+
 ### events
-指定したイベントで強度判定を行います。  
 **Default: `keyup change`**  
-**Type: `string`**
+**Type: `string`**  
+
+指定したイベントで強度判定を行います。  
+
 
 ### labels
-強度を示すラベルを配列で指定します。  
 **Type: `array`**  
 **Default:**
+
+強度を示すラベルを配列で指定します。  
 
 ```javascript
 [
@@ -150,11 +155,16 @@ $(document).ready(function(){
 
 
 ### indicator
-強度を示すラベルを表示する要素を指定します。  
 **Type: `string | jQueryObj | DOM Elements`**  
 **Default: `#pm-indicator`**
 
+強度を示すラベルを表示する要素を指定します。  
+
+
 ### indicatorTemplate
+**Type: `string | jQueryObj | DOM Elements`**  
+**Default: `パスワード強度: <%= label %> (<%= percentage %>%)`**
+
 強度を示すラベルを表示する`<%= キー %>`形式で指定します。  
 使用できるキーは下記です。
 
@@ -162,48 +172,59 @@ $(document).ready(function(){
 * `className`
 * `percentage`
 
-**Type: `string | jQueryObj | DOM Elements`**  
-**Default: `パスワード強度: <%= label %> (<%= percentage %>%)`**
-
 ### confirm
-確認用のフィールドを指定します。確認用フィールドを指定することで、
-パスワードが一致しているかどうかの判定も行ないます。  
 **Type: `string | jQueryObj | DOM Elements`**  
 **Default: `false`**
 
+確認用のフィールドを指定します。確認用フィールドを指定することで、
+パスワードが一致しているかどうかの判定も行ないます。  
+
+
 
 ## Callbacks
+
 ### onValid
-強度が`minScore`の値を上回ったらコールされます。  
 **Default: `false`**  
 **Type: `function`**
+
+強度が`minScore`の値を上回ったらコールされます。  
+
 
 ### onInvalid
-強度が`minScore`の値を上回った後、再び`minScore`よりも低い値になった際にコールされます。  
 **Default: `false`**  
 **Type: `function`**
+
+強度が`minScore`の値を上回った後、再び`minScore`よりも低い値になった際にコールされます。  
+
 
 ### onNotMatch
+**Default: `false`**  
+**Type: `function`**
+
 メインの入力フィールドと、確認用フィールドの値が異なる際にコールされます。  
 毎回のイベント時に呼ばれるのでは無く、内部的なステータス値が変更されたタイミングを採用します。  
-**Default: `false`**  
-**Type: `function`**
+
 
 ### onEmpty
-メインの入力フィールドと、確認用フィールドのどちらも値が空の時コールされます。  
 **Default: `false`**  
 **Type: `function`**
+
+メインの入力フィールドと、確認用フィールドのどちらも値が空の時コールされます。  
+
 
 ### onChangeState
-`onValid`, `onInvalid`, `onNotMatch`のタイミングでコールされます。  
 **Default: `false`**  
 **Type: `function`**
 
+`onValid`, `onInvalid`, `onNotMatch`のタイミングでコールされます。  
+
+
 ### onChangeValue
-パスワードの値が変更される度にコールされます。  
-※実際の値の変化では無く、`events`オプションで指定したイベント実行の度にコールされます。  
 **Default: `false`**  
 **Type: `function`**
+
+パスワードの値が変更される度にコールされます。  
+※実際の値の変化では無く、`events`オプションで指定したイベント実行の度にコールされます。  
 
 
 ## Dependencies
@@ -213,7 +234,7 @@ jQuery 1.7.2 +
 ## TODO
 以下、優先順位順。
 
-1. <del>テストを書く<del>
+1. <del>テストを書く</del>
 2. デモページの移行 (Github上に作成)
 3. コールバックとは別にイベントを提供する
 4. 文字列から、強度を測定するグローバルAPIを提供
@@ -221,7 +242,7 @@ jQuery 1.7.2 +
 
 
 ## Licence
-Released under the [MIT Licence](https://github.com/tsuyoshiwada/jQuery.pwdMeasure/blob/master/LICENCE)
+Released under the [MIT Licence](https://raw.githubusercontent.com/tsuyoshiwada/jquery-pwd-measure/master/LICENSE)
 
 
 ## Author

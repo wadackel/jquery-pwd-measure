@@ -1,8 +1,8 @@
-gulp        = require("gulp")
-$           = do require("gulp-load-plugins")
-del         = require("del")
+gulp = require("gulp")
+$ = do require("gulp-load-plugins")
+del = require("del")
 runSequence = require("run-sequence")
-pkg         = require("./package.json")
+pkg = require("./package.json")
 
 files = 
   src : "./jquery.pwdMeasure.js"
