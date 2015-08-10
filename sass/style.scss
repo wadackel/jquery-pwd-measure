@@ -87,6 +87,11 @@ h5,
 h6 {
   @include font-accent;
   color:$color-text-primary;
+  small {
+    margin-left:1em;
+    font-weight:normal;
+    font-size:.6em;
+  }
 }
 
 h1 {
