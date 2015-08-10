@@ -40,6 +40,12 @@ $font-accent:"Roboto Slab",serif;
   }
 }
 
+@mixin mq-small() {
+  @media only screen and (max-width:#{$content-width + ($content-padding * 2)}) {
+    @content;
+  }
+}
+
 @mixin btn-theme-factory($color, $color-active, $color-text-active) {
   color:$color;
   background-color:transparent;
@@ -65,6 +71,7 @@ body,
 html {
   width:100%;
   height:100%;
+  min-width:320px;
   background:$color-bg;
   color:$color-text-primary;
   font-size:$font-size;
@@ -153,6 +160,13 @@ a {
   background:lighten($color-primary, 5%);
 }
 
+@include mq-small {
+  body,
+  html {
+    font-size:ceil($font-size / 1.4);
+  }
+}
+
 
 //== Components
 .prettyprint {
@@ -161,6 +175,18 @@ a {
   padding:1em;
   border-radius:6px;
   font-size:round($font-size / 1.2);
+  @include mq-small {
+    font-size:round($font-size / 1.4);
+  }
+}
+
+.gh-ribbons {
+  @include mq-small {
+    img {
+      width:120px;
+      height:auto;
+    }
+  }
 }
 
 .clearfix {
@@ -223,6 +249,10 @@ a {
   @include m(hero) {
     @include btn-theme-factory(#fff, $color-accent, #fff);
   }
+
+  @include mq-small {
+    font-size:ceil($font-size / 1.4);
+  }
 }
 
 .container {
@@ -233,15 +263,29 @@ a {
   margin-left:auto;
   padding-right:$content-padding;
   padding-left:$content-padding;
+  @include mq-small {
+    width:auto;
+    padding-right:$content-padding / 2;
+    padding-left:$content-padding / 2;
+    margin-right:10px;
+    margin-left:10px;
+  }
 }
 
 .hero {
   padding:60px 0 120px 0;
   background:$color-primary;
   color:#fff;
+  word-wrap:break-word;
   h1 {
     margin-top:0;
     color:#fff;
+  }
+  @include mq-small {
+    .container {
+      padding-right:0;
+      padding-left:0;
+    }
   }
 }
 
@@ -260,6 +304,10 @@ a {
   padding-bottom:$content-padding;
   background:#fff;
   box-shadow:0 3px 3px rgba(0, 0, 0, .2);
+  @include mq-small {
+    padding-top:$content-padding / 2;
+    padding-bottom:$content-padding / 2;
+  }
 }
 
 .section {
@@ -282,6 +330,7 @@ a {
   code {
     overflow:auto;
     border-width:0;
+    -webkit-overflow-scrolling:touch;
   }
   @include e(copy) {
     @extend .btn;
