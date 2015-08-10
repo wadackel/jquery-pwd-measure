@@ -289,6 +289,22 @@ a {
   }
 }
 
+.shares {
+  margin:20px 0;
+  .fb_iframe_widget span {
+    vertical-align:top !important;
+  }
+  > * {
+    display:inline-block !important;
+    vertical-align:top !important;
+    margin-top:5px;
+    margin-bottom:5px;
+    & + * {
+      margin-left:10px;
+    }
+  }
+}
+
 .footer {
   border-top:1px solid lighten($color-divider, 15%);
   background:lighten($color-divider, 25%);
