@@ -6,12 +6,11 @@ jquery-pwd-measure
 [![Bower](https://img.shields.io/bower/v/jquery-pwd-measure.svg?style=flat-square)](http://bower.io/search/?q=jquery-pwd-measure)
 
 
-## Description
 パスワードの強度を測定して表示するためのjQueryプラグインです。
 
 
 ## Demo
-準備中
+[http://tsuyoshiwada.github.io/jquery-pwd-measure/](http://tsuyoshiwada.github.io/jquery-pwd-measure/)
 
 
 ## Features
@@ -227,6 +226,85 @@ $(document).ready(function(){
 ※実際の値の変化では無く、`events`オプションで指定したイベント実行の度にコールされます。  
 
 
+## CSS Example
+`jQuery.pwdMeasure.js`では、スタイルを柔軟に設定することが出来ます。
+このページで強度表示に使用しているスタイルは次のとおりです。是非参考にしてみてください。
+
+### CSS
+
+```css
+.pm-indicator {
+  margin:10px 0;
+  padding:1.5em 1em;
+  color:#2c3e50;
+  font-size:12px;
+  text-align:center;
+  border:1px solid #ccc;
+  border-radius:2px;
+  background:#e4e4e4;
+  text-shadow:1px 1px 0 rgba(255,255,255,.8);
+  -webkit-transition:all .2s ease-in-out;
+          transition:all .2s ease-in-out;
+}
+
+.pm-indicator.very-weak,
+.pm-indicator.not-match {
+  border-color:#be1d30;
+  background-color:#ffc3cf;
+}
+
+.pm-indicator.weak {
+  border-color:#ff787d;
+  background-color:#ffe6e5;
+}
+
+.pm-indicator.strong {
+  border-color:#78bc42;
+  background-color:#bceea6;
+}
+
+.pm-indicator.very-strong {
+  border-color:#4f85a7;
+  background-color:#68c6d7;
+}
+```
+
+### Scss
+
+```scss
+.pm-indicator {
+  margin:10px 0;
+  padding:1.5em 1em;
+  background:#e4e4e4;
+  border:1px solid #ccc;
+  border-radius:2px;
+  color:#2c3e50;
+  font-size:12px;
+  text-shadow:1px 1px 0 rgba(255, 255, 255, .8);
+  text-align:center;
+  transition:all .2s ease-in-out;
+  &.very-weak,
+  &.not-match {
+    background-color:#ffc3cf;
+    border-color:#be1d30;
+  }
+  &.weak {
+    background-color:#ffe6e5;
+    border-color:#ff787d;
+  }
+  &.average {
+  }
+  &.strong {
+    background-color:#bceea6;
+    border-color:#78bc42;
+  }
+  &.very-strong {
+    background-color:#68c6d7;
+    border-color:#4f85a7;
+  }
+}
+```
+
 ## Dependencies
 jQuery 1.7.2 +
 
@@ -235,7 +313,7 @@ jQuery 1.7.2 +
 以下、優先順位順。
 
 1. <del>テストを書く</del>
-2. デモページの移行 (Github上に作成)
+2. <del>デモページの移行 (Github上に作成)</del>
 3. コールバックとは別にイベントを提供する
 4. 文字列から、強度を測定するグローバルAPIを提供
 5. CSSのテーマを作成 (オプションで選択できるようにする予定)

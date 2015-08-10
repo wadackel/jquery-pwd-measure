@@ -9,7 +9,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="jQuery.pwdMeasure.js">
     <meta property="og:description" content="jQuery.pwdMeasure.jsはパスワードの強度を測定するjQueryプラグインです。">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="http://tsuyoshiwada.github.io/jquery-pwd-measure/">
     <meta property="og:site_name" content="jQuery.pwdMeasure.js">
     <title>jQuery.pwdMeasure.js</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
@@ -53,7 +53,7 @@
       <div class="section">
         <h2 class="section__title"><i class="fa fa-hand-o-right"></i> Demo</h2>
         <div class="form-group">
-          <label class="form-group__label">パスワード</label>
+          <label for="demo-pm-input" class="form-group__label">パスワード</label>
           <input id="demo-pm-input" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div id="demo-pm-indicator" class="pm-indicator"></div>
@@ -116,7 +116,7 @@
           デフォルトで<code>#pm-indicator</code>に強度が表示されます。
         </p>
         <div class="form-group">
-          <label class="form-group__label">パスワード</label>
+          <label for="pm-input" class="form-group__label">パスワード</label>
           <input id="pm-input" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div id="pm-indicator" class="pm-indicator"></div>
@@ -128,11 +128,11 @@
         <h3>Confirm</h3>
         <p><code>confirm</code>オプションで確認用のフィールドを指定した例です。確認用のフィールドがある場合は、値が一致しているかのチェックも行ないます。</p>
         <div class="form-group">
-          <label class="form-group__label">パスワード</label>
+          <label for="pm-input2" class="form-group__label">パスワード</label>
           <input id="pm-input2" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div class="form-group">
-          <label class="form-group__label">パスワード確認</label>
+          <label for="pm-confirm2" class="form-group__label">パスワード確認</label>
           <input id="pm-confirm2" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div id="pm-indicator2" class="pm-indicator"></div>
@@ -147,7 +147,7 @@
         <h3>Change Labels</h3>
         <p>表示ラベルを変更する例です。</p>
         <div class="form-group">
-          <label class="form-group__label">パスワード</label>
+          <label for="pm-input3" class="form-group__label">パスワード</label>
           <input id="pm-input3" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div id="pm-indicator3" class="pm-indicator"></div>
@@ -169,7 +169,7 @@
         <h3>Change Events</h3>
         <p>強度判定を行うタイミングを決める為のイベントを変更することが出来ます。下記では<code>change</code>のみに絞っています。</p>
         <div class="form-group">
-          <label class="form-group__label">パスワード</label>
+          <label for="pm-input4" class="form-group__label">パスワード</label>
           <input id="pm-input4" type="password" value="" placeholder="Your password" class="form-group__input">
         </div>
         <div id="pm-indicator4" class="pm-indicator"></div>
@@ -188,11 +188,11 @@
         </p>
         <form id="pm-form5">
           <div class="form-group">
-            <label class="form-group__label">パスワード</label>
+            <label for="pm-input5" class="form-group__label">パスワード</label>
             <input id="pm-input5" type="password" value="" placeholder="Your password" class="form-group__input">
           </div>
           <div class="form-group">
-            <label class="form-group__label">パスワード</label>
+            <label for="pm-confirm5" class="form-group__label">パスワード</label>
             <input id="pm-confirm5" type="password" value="" placeholder="Your password" class="form-group__input">
           </div>
           <div id="pm-indicator5" class="pm-indicator"></div>
@@ -347,11 +347,11 @@ $(&quot;#pm-input5&quot;).pwdMeasure({
       </div>
       <div class="section">
         <h2 class="section__title"> <i class="fa fa-bell-o"></i> Change Log</h2>
-        <h3>2015.06.13</h3>
+        <h3>v1.0.4<small>2015.06.13</small></h3>
         <p>IE8以下で起きるエラーの修正。(<code>labels</code>内の<code>class</code>を<code>className</code>に変更しています)</p>
-        <h3>2015.02.14</h3>
+        <h3>v1.0.2<small>2015.02.14</small></h3>
         <p><code>bower</code>を使ったインストールに対応 &amp; <code>empty</code>オプションの追加</p>
-        <h3>2015.01.24</h3>
+        <h3>v1.0.0<small>2015.01.24</small></h3>
         <p>First Release.</p>
       </div>
     </div>
