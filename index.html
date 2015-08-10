@@ -350,16 +350,29 @@ $(&quot;#pm-input5&quot;).pwdMeasure({
       <p class="copyright"><a href="https://github.com/tsuyoshiwada">tsuyoshiwada</a> Copyright © All Right Reserved.</p>
     </div>
     <script type="text/javascript" src="./js/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="./js/zeroclipboard-2.2.0/ZeroClipboard.min.js"></script>
     <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="./js/jquery.pwdMeasure.js"></script>
     <script>
       $(function(){
       
+        // syntax highlight
         $(".show-code").each(function(){
           $("code", this).addClass("prettyprint");
         });
       
         prettyPrint();
+      
+        // copy button
+        $(".show-code__copy").each(function(){
+          var $this = $(this);
+          $this.attr("data-clipboard-text", $this.parent().find("code").text());
+      
+          var client = new ZeroClipboard($this);
+          //- client.on("ready", function(){
+          //-   console.log("hhghgh");
+          //- });
+        });
         
         // demo
         $("#demo-pm-input").pwdMeasure({
