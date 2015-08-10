@@ -295,8 +295,14 @@ a {
     border-radius:0 6px 0 3px;
     background:lighten(#2d2d2d, 8%);
     color:#ccc;
-    &:hover {
+    &:hover,
+    &.zeroclipboard-is-hover {
       background:darken($color-accent, 10%);
+      color:#fff;
+    }
+    &:active,
+    &.zeroclipboard-is-active {
+      background:darken($color-accent, 30%);
       color:#fff;
     }
   }
