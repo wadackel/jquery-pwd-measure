@@ -27,16 +27,16 @@ jquery-pwd-measure
 
 ## How To Use
 
-### Bower
-
-```
-$ bower install jquery-pwd-measure --save
-```
-
 ### npm
 
 ```
 $ npm install jquery-pwd-measure --save
+```
+
+### Bower (非推奨:更新予定無)
+
+```
+$ bower install jquery-pwd-measure --save
 ```
 
 ### Basic

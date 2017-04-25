@@ -74,14 +74,14 @@
         <h2 class="section__title"><i class="fa fa-rocket"></i> How To Use</h2>
         <h3>Install</h3>
         <p>いつも通り<code>script</code>タグで読み込む方法以外に、<code>Bower</code>と<code>npm</code>でのインストールをサポートしています。</p>
-        <h4>Bower</h4>
-        <div class="show-code">
-          <button class="show-code__copy">Copy</button><pre><code>$ bower install jquery-pwd-measure
-</code></pre>
-        </div>
         <h4>npm</h4>
         <div class="show-code">
           <button class="show-code__copy">Copy</button><pre><code>$ npm install jquery-pwd-measure
+</code></pre>
+        </div>
+        <h4>Bower<small>※非推奨, 更新の予定はありません</small></h4>
+        <div class="show-code">
+          <button class="show-code__copy">Copy</button><pre><code>$ bower install jquery-pwd-measure
 </code></pre>
         </div>
         <h4>script</h4>
@@ -347,6 +347,8 @@ $(&quot;#pm-input5&quot;).pwdMeasure({
       </div>
       <div class="section">
         <h2 class="section__title"> <i class="fa fa-bell-o"></i> Change Log</h2>
+        <h3>v1.0.5<small>2017.04.2504</small></h3>
+        <p>非推奨になっていた<code>.size()</code>を<code>.length</code>に変更。(<a href="https://github.com/tsuyoshiwada/jquery-pwd-measure/pull/1">#1</a>)</p>
         <h3>v1.0.4<small>2015.06.13</small></h3>
         <p>IE8以下で起きるエラーの修正。(<code>labels</code>内の<code>class</code>を<code>className</code>に変更しています)</p>
         <h3>v1.0.2<small>2015.02.14</small></h3>

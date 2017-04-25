@@ -99,14 +99,6 @@ html
         
         h3 Install
         p いつも通り<code>script</code>タグで読み込む方法以外に、<code>Bower</code>と<code>npm</code>でのインストールをサポートしています。
-
-        h4 Bower
-        div.show-code
-          button.show-code__copy Copy
-          :markdown
-            ```
-            $ bower install jquery-pwd-measure
-            ```
         
         h4 npm
         div.show-code
@@ -114,6 +106,15 @@ html
           :markdown
             ```
             $ npm install jquery-pwd-measure
+            ```
+
+        h4 Bower
+          small ※非推奨, 更新の予定はありません
+        div.show-code
+          button.show-code__copy Copy
+          :markdown
+            ```
+            $ bower install jquery-pwd-measure
             ```
         
         h4 script
@@ -411,6 +412,11 @@ html
         h2.section__title 
           i.fa.fa-bell-o
           |  Change Log
+
+        h3
+          | v1.0.5
+          small 2017.04.2504
+        p 非推奨になっていた<code>.size()</code>を<code>.length</code>に変更。(<a href="https://github.com/tsuyoshiwada/jquery-pwd-measure/pull/1">#1</a>)
 
         h3
           | v1.0.4
