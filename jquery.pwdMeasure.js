@@ -16,7 +16,7 @@
   // CommonJS
   }else if( typeof exports === "object" ){
     module.exports = factory(require("jquery"));
-    
+
   // Default (browser)
   }else{
     factory(jQuery);
@@ -58,7 +58,7 @@
           {score:100,        label:"とても強い", className:"very-strong"}, //71~100%
           {score:"notMatch", label:"不一致",     className:"not-match"},   //not match
           {score:"empty",    label:"未入力",     className:"empty"}        //empty
-        ], 
+        ],
         indicator: "#pm-indicator",
         indicatorTemplate: "パスワード強度: <%= label %> (<%= percentage %>%)",
         confirm: false,
@@ -125,7 +125,7 @@
     this.$indicator = $(this.options.indicator);
     this.$confirm = $(this.options.confirm);
 
-    if( this.$indicator.size() > 0 ){
+    if( this.$indicator.length > 0 ){
       this.indicatorDefaultHtml = this.$indicator.html();
     }
 
@@ -204,7 +204,7 @@
           index = i;
         }
       }else if(
-        d.score === "empty" && status === Status.EMPTY || 
+        d.score === "empty" && status === Status.EMPTY ||
         d.score === "notMatch" && status === Status.NOT_MATCH
       ){
         index = i;
@@ -228,14 +228,14 @@
 
   /**
    * Updated state based on the value of the input field.
-   * @param boolean 
+   * @param boolean
    * @return void
    */
   PwdMeasure.fn.update = function(isInitialize){
     var status = this.status,
         val1 = this.$elem.val(),
         val2 = this.$confirm.val(),
-        confirmSize = this.$confirm.size();
+        confirmSize = this.$confirm.length;
 
     isInitialize = isInitialize === true ? true : false;
 
@@ -285,7 +285,7 @@
         this.currentLabelObj.className
       );
     }
-    
+
     if( isChangeStatus ){
       var options = this.options,
           percentage = this.percentage,
@@ -348,7 +348,7 @@
    * @return void
    */
   PwdMeasure.fn._displayIndicator = function(){
-    if( this.$indicator.size() === 0 ) return false;
+    if( this.$indicator.length === 0 ) return false;
 
     var html = this.options.indicatorTemplate,
         args = {
@@ -384,7 +384,7 @@
     _this.$elem.on(_this.eventName, $.proxy(_this.update, _this));
 
     // confirm
-    if( _this.$confirm.size() > 0 ){
+    if( _this.$confirm.length > 0 ){
       _this.$confirm.on(_this.eventName, $.proxy(_this.update, _this));
     }
   };
@@ -429,7 +429,7 @@
     this._unbindMethods();
     this.$elem.removeData(DATA_KEY);
 
-    if( this.$indicator.size() > 0 ){
+    if( this.$indicator.length > 0 ){
       this.$indicator
         .html(this.indicatorDefaultHtml)
         .removeClass(this._allLabelClass());
