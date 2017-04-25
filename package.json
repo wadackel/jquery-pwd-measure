@@ -4,7 +4,11 @@
   "description": "jQuery plugin to measure the strength of the password.",
   "main": "jquery.pwdMeasure.js",
   "scripts": {
-    "test": "gulp test"
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "gulp test",
+    "demo": "gulp demo:watch",
+    "demo:build": "gulp demo:build"
   },
   "repository": {
     "type": "git",
